@@ -1,15 +1,12 @@
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Main from "./components/main"
 
 function App() {
+
   return (
     <div className="App">
-      <div className="container">
-      <div className="row">
-        <div className="col-6">test1</div>
-        <div className="col-6">test2</div>
-      </div>
-      </div>
+      <Main />
     </div>
   );
 }
