@@ -6,7 +6,13 @@ function App() {
 
   return (
     <div className="App">
-      <Main />
+      <div className="container">
+        <div className="row">
+          <div className="col-12 vertical-center">
+          <Main />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React, {Component} from "react"
 import axios from "axios"
-import {Spinner} from "react-bootstrap"
+import {Spinner, Button} from "react-bootstrap"
+
+import HeroCard from "./heroCard"
+
 const apiKey=process.env.REACT_APP_API_KEY
 const baseUrl=`https://superheroapi.com/api/${apiKey}`
 
@@ -35,24 +38,40 @@ class Main extends Component
 
     render()
     {
-        console.log(this.state)
         if (this.state.isLoading)
         {
           return(
               <>
-              <Spinner animation="border" variant="warning"/>
-              <h1>Loading...</h1>
+              <div className="container">
+                <div className="row text-center align-items-center">
+                    <div className="col-12">
+                        <Spinner animation="border" variant="warning"/>
+                        <h1>Loading...</h1>
+                    </div>
+                </div>
+              </div>
               </>
           )
+        }
+
+        else if(!this.state.hero)
+        {
+            return(<>
+                <div className="container">
+                    <div className="row">
+                    <div className="col-6 text-center"><Button variant="warning" onClick={this.getRandomHero}>Get hero information</Button></div>
+                    </div>
+                </div>
+            </>)
         }
         else
         {
             return(
                 <div className="container">
                     <div className="row">
-                        {(this.state.hero)? <img src={this.state.hero.data.image.url} className="col-6 img img-fluid"></img>: <></>}
-                        <div className="col-6"><button onClick={this.getRandomHero}>Get hero information</button>test2</div>
+                        <div className="col-6"><Button variant="warning" onClick={this.getRandomHero}>Get hero information</Button></div>
                     </div>
+                    <HeroCard hero={this.state.hero.data}/>
                 </div>
                 )
         }
